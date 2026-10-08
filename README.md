@@ -11,6 +11,22 @@ Pick the skills you want and install them into the project you are in. The insta
 
 Run the script from the project that should receive the skills. The target directory is whatever `pwd` prints when the menu opens.
 
+### Download from GitHub
+
+From the project directory, fetch the script and run it:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/debeshghorui/Add-Skills/main/install-ai-skills.sh -o install-ai-skills.sh
+chmod +x install-ai-skills.sh
+./install-ai-skills.sh
+```
+
+That writes `install-ai-skills.sh` into the current directory, then opens the menu. Skills install into that same directory.
+
+### Run a local copy
+
+If you already have the file:
+
 ```bash
 cd /path/to/your-project
 bash /path/to/install-ai-skills.sh
