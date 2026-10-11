@@ -2,10 +2,54 @@
 
 Pick the skills you want and install them into the project you are in. Run `npx add-ai-skills`. It uses the [Skills CLI](https://skills.sh/) (`npx skills`) and writes skills into the current directory for the agents you pick, including editors and CLI agents such as Claude Code, Codex, and Gemini CLI. It does not install them globally.
 
+Adding a skill writes `skills.json` (the skills and agents for this project) and the Skills CLI writes `skills-lock.json` (the exact sources and hashes). Commit both. `npx add-ai-skills i` installs every skill in `skills.json`, the same way `npm i` installs from a lockfile.
+
 ## Requirements
 
 - [Node.js](https://nodejs.org/) 20.12 or newer, with `npx` on your `PATH`
 - A project directory you want the skills installed into
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `npx add-ai-skills init` | Create `skills.json` |
+| `npx add-ai-skills add` | Open the picker and add the skills you choose |
+| `npx add-ai-skills add 1 3 find-skills` | Add skills by catalog number or name |
+| `npx add-ai-skills i` | Install every skill in `skills.json` |
+| `npx add-ai-skills remove find-skills` | Remove skills from the project and from `skills.json` |
+| `npx add-ai-skills remove --all` | Remove every skill in `skills.json` |
+| `npx add-ai-skills list` | Show the skills and agents in `skills.json` |
+| `npx add-ai-skills update` | Update installed skills to the latest version |
+| `npx add-ai-skills --list` | Print the numbered catalog |
+
+`install` is the long form of `i`. `rm` and `uninstall` are the long forms of `remove`. `ls` lists `skills.json`. `upgrade` updates.
+
+`skills.json` records which skills to install and which agents receive them. `skills-lock.json` records the exact sources and hashes.
+
+```json
+{
+  "agents": ["cursor"],
+  "skills": {
+    "find-skills": {
+      "repo": "https://github.com/vercel-labs/skills",
+      "description": "Find and install other agent skills"
+    }
+  }
+}
+```
+
+On a fresh checkout, from the project directory:
+
+```bash
+npx add-ai-skills i
+```
+
+That reads `skills.json` and installs every listed skill for the agents in that file. If `skills.json` is missing, `i` restores what it can from `skills-lock.json`, installs those skills for Cursor, and writes `skills.json`. Pass `--agent` to use a different agent for that run.
+
+```bash
+npx add-ai-skills i --agent claude-code
+```
 
 ## User manual
 
@@ -24,10 +68,10 @@ npm downloads the installer, opens the picker, and installs the skills you choos
 To install without the picker:
 
 ```bash
-npx add-ai-skills all
-npx add-ai-skills 1 3 5
-npx add-ai-skills 1-4
-npx add-ai-skills find-skills frontend-design
+npx add-ai-skills add all
+npx add-ai-skills add 1 3 5
+npx add-ai-skills add 1-4
+npx add-ai-skills add find-skills frontend-design
 ```
 
 Print the numbered catalog, or the help text:
@@ -67,14 +111,14 @@ Choose **Other** on the agent screen to type an agent name that is not in the li
 
 ### Install from the command line
 
-Arguments select skills and install them immediately. There is no picker.
+`add` selects skills and installs them immediately. There is no picker. A number or name with no command does the same thing.
 
 ```bash
-npx add-ai-skills all
-npx add-ai-skills 1 3 5
-npx add-ai-skills 1-4
-npx add-ai-skills 2,4
-npx add-ai-skills find-skills frontend-design
+npx add-ai-skills add all
+npx add-ai-skills add 1 3 5
+npx add-ai-skills add 1-4
+npx add-ai-skills add 2,4
+npx add-ai-skills add find-skills frontend-design
 ```
 
 Numbers match the catalog below. `all` selects every skill. `none` clears the selection so far. An unknown name or a number outside the list stops the command before anything is installed.
@@ -99,14 +143,24 @@ Each selected skill is installed with:
 npx --yes skills add <repo> --skill <name> --agent cursor --full-depth -y
 ```
 
-For Cursor, files land in `.agents/skills/` inside the project you ran the command from. The CLI prints how many installs succeeded and how many failed. A failed skill does not roll back the ones that already succeeded.
+For Cursor, files land in `.agents/skills/` inside the project you ran the command from. Each skill that installs is added to `skills.json`. The Skills CLI updates `skills-lock.json`. The CLI prints how many installs succeeded and how many failed. Skills that succeeded stay installed and are written to `skills.json`.
+
+### Remove
+
+```bash
+npx add-ai-skills remove find-skills pdf
+npx add-ai-skills remove --all
+```
+
+This removes the skill files and deletes those entries from `skills.json`. `--all` clears every skill in `skills.json`.
 
 ### Update later
 
-This installer only adds skills. To refresh ones already in the project:
+To refresh skills already installed in the project:
 
 ```bash
-npx skills update
+npx add-ai-skills update
+npx add-ai-skills update find-skills
 ```
 
 Browse the wider catalog at [skills.sh](https://skills.sh/), or install [find-skills](https://skills.sh/vercel-labs/skills/find-skills) and ask the agent to look one up.

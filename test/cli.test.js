@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { parseArgs } from "../lib/args.js";
 import { skills } from "../lib/catalog.js";
-import { installArgs } from "../lib/install.js";
+import { installArgs, removeArgs, updateArgs } from "../lib/install.js";
 import { selectSkills } from "../lib/select.js";
 
 test("catalog numbers stay aligned with the README", () => {
@@ -48,8 +48,26 @@ test("parses agent flags and leaves skill tokens alone", () => {
   assert.deepEqual(parseArgs(["-a", "cursor", "find-skills"]).tokens, ["find-skills"]);
   assert.equal(parseArgs(["--agent=*"]).agent, "*");
   assert.equal(parseArgs(["--list"]).list, true);
+  assert.equal(parseArgs(["find-skills"]).command, undefined);
   assert.throws(() => parseArgs(["--nope"]), /Unknown option: --nope/);
   assert.throws(() => parseArgs(["--agent"]), /Missing value for --agent/);
+});
+
+test("parses package commands", () => {
+  assert.equal(parseArgs(["init"]).command, "init");
+  assert.equal(parseArgs(["i"]).command, "install");
+  assert.equal(parseArgs(["install"]).command, "install");
+  assert.deepEqual(parseArgs(["add", "1", "find-skills"]).tokens, ["1", "find-skills"]);
+  assert.equal(parseArgs(["add", "1", "find-skills"]).command, "add");
+  assert.equal(parseArgs(["--agent", "cursor", "add", "find-skills"]).agent, "cursor");
+  assert.equal(parseArgs(["rm", "tdd"]).command, "remove");
+  assert.deepEqual(parseArgs(["remove", "tdd", "pdf"]).tokens, ["tdd", "pdf"]);
+  assert.equal(parseArgs(["uninstall", "--all"]).all, true);
+  assert.equal(parseArgs(["ls"]).command, "list");
+  assert.equal(parseArgs(["upgrade", "tdd"]).command, "update");
+  assert.deepEqual(parseArgs(["update", "tdd"]).tokens, ["tdd"]);
+  assert.throws(() => parseArgs(["i", "find-skills"]), /install does not take skill names/);
+  assert.throws(() => parseArgs(["--all"]), /--all is only for remove/);
 });
 
 test("builds the skills CLI command", () => {
@@ -73,4 +91,27 @@ test("builds the skills CLI command", () => {
   ]);
   assert.ok(installArgs(skills[0], ["cursor", "*"]).includes("*"));
   assert.equal(installArgs(skills[0], ["cursor", "*"]).filter((part) => part === "--agent").length, 1);
+});
+
+test("builds remove and update commands", () => {
+  assert.deepEqual(removeArgs(["tdd"], "cursor"), [
+    "--yes",
+    "skills",
+    "remove",
+    "tdd",
+    "--agent",
+    "cursor",
+    "-y",
+  ]);
+  assert.deepEqual(removeArgs([], ["cursor", "*"], { all: true }), [
+    "--yes",
+    "skills",
+    "remove",
+    "--all",
+    "--agent",
+    "*",
+    "-y",
+  ]);
+  assert.deepEqual(updateArgs(["tdd"]), ["--yes", "skills", "update", "tdd", "--project", "-y"]);
+  assert.deepEqual(updateArgs([]), ["--yes", "skills", "update", "--project", "-y"]);
 });
