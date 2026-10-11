@@ -1,0 +1,36 @@
+{
+  "name": "add-ai-skills",
+  "version": "1.0.0",
+  "description": "Pick common AI skills and install them into the current project.",
+  "type": "module",
+  "bin": {
+    "add-ai-skills": "bin/add-ai-skills.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/debeshghorui/Add-Skills.git"
+  },
+  "homepage": "https://github.com/debeshghorui/Add-Skills#readme",
+  "bugs": {
+    "url": "https://github.com/debeshghorui/Add-Skills/issues"
+  },
+  "keywords": [
+    "ai",
+    "skills",
+    "cursor",
+    "agents",
+    "cli"
+  ],
+  "engines": {
+    "node": ">=20.12.0"
+  },
+  "author": "debeshghorui",
+  "dependencies": {
+    "@clack/prompts": "^1.8.1"
+  }
+}
