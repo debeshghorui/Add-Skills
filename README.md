@@ -1,82 +1,95 @@
 # Common AI Skills
 
-Pick the skills you want and install them into the project you are in. The installer is `install-ai-skills.sh`. It uses the [Skills CLI](https://skills.sh/) (`npx skills`) and writes skills into the current directory for Cursor. It does not install them globally.
+Pick the skills you want and install them into the project you are in. Run `npx add-ai-skills`. It uses the [Skills CLI](https://skills.sh/) (`npx skills`) and writes skills into the current directory for the agents you pick, including editors and CLI agents such as Claude Code, Codex, and Gemini CLI. It does not install them globally.
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/) with `npx` on your `PATH`
+- [Node.js](https://nodejs.org/) 20.12 or newer, with `npx` on your `PATH`
 - A project directory you want the skills installed into
 
 ## User manual
 
-Run the script from the project that should receive the skills. The target directory is whatever `pwd` prints when the menu opens.
+Run it from the project that should receive the skills. The picker shows that directory before you confirm.
 
-### Download from GitHub
+### Run with npx
 
-From the project directory, fetch the script and run it:
+From the project directory:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/debeshghorui/Add-Skills/main/install-ai-skills.sh -o install-ai-skills.sh
-chmod +x install-ai-skills.sh
-./install-ai-skills.sh
+npx add-ai-skills
 ```
 
-That writes `install-ai-skills.sh` into the current directory, then opens the menu. Skills install into that same directory.
+npm downloads the installer, opens the picker, and installs the skills you choose into that directory. It does not add this package to the project.
+
+To install without the picker:
+
+```bash
+npx add-ai-skills all
+npx add-ai-skills 1 3 5
+npx add-ai-skills 1-4
+npx add-ai-skills find-skills frontend-design
+```
+
+Print the numbered catalog, or the help text:
+
+```bash
+npx add-ai-skills --list
+npx add-ai-skills --help
+```
 
 ### Run a local copy
 
-If you already have the file:
+Clone the repo, install its dependencies, then run it from the project that should receive the skills:
 
 ```bash
+git clone https://github.com/debeshghorui/Add-Skills.git
+cd Add-Skills
+npm install
 cd /path/to/your-project
-bash /path/to/install-ai-skills.sh
+node /path/to/Add-Skills/bin/add-ai-skills.js
 ```
 
-You can also make the script executable and call it directly:
+### Interactive terminal
 
-```bash
-chmod +x install-ai-skills.sh
-./install-ai-skills.sh
-```
+With no skill arguments, the CLI opens the same kind of live terminal the Skills installer uses. You search, move, and select. Nothing installs until you confirm.
 
-### Interactive menu
+There are two screens. The first is agents. Cursor starts selected. Type `cli` to show terminal agents such as Claude Code, Codex, Gemini CLI, and OpenCode, and select as many as you want. The second screen is the skill list. Type `react`, `security`, or a group name to filter it.
 
-With no arguments, the script prints every skill, grouped, and waits for a selection.
-
-| Input | What it does |
+| Key | What it does |
 | --- | --- |
-| `1 3 5` | Toggle skills 1, 3, and 5 |
-| `1-4` | Toggle a range |
-| `2,4` | Toggle those numbers (commas work the same as spaces) |
-| `find-skills` | Toggle by skill name |
-| `all` or `a` | Select every skill |
-| `none` or `n` | Clear the selection |
-| Enter | Install whatever is selected, then exit |
-| `q` or `quit` | Exit without installing |
+| Type | Filter the list |
+| `↑` `↓` | Move through the matches |
+| `space` or `tab` | Select or clear the highlighted row |
+| `enter` | Confirm this screen and continue |
+| `ctrl-c` | Quit without installing |
 
-Selected rows show `[x]`. Press Enter on an empty selection and nothing is installed; the menu stays open.
+Choose **Other** on the agent screen to type an agent name that is not in the list. **All agents** passes `*` to the Skills CLI.
 
 ### Install from the command line
 
-Arguments select skills and install them immediately. There is no menu.
+Arguments select skills and install them immediately. There is no picker.
 
 ```bash
-./install-ai-skills.sh all
-./install-ai-skills.sh 1 3 5
-./install-ai-skills.sh 1-4
-./install-ai-skills.sh find-skills frontend-design
+npx add-ai-skills all
+npx add-ai-skills 1 3 5
+npx add-ai-skills 1-4
+npx add-ai-skills 2,4
+npx add-ai-skills find-skills frontend-design
 ```
 
-Numbers match the catalog below. An unknown name or a number outside the list stops the script before anything is installed.
+Numbers match the catalog below. `all` selects every skill. `none` clears the selection so far. An unknown name or a number outside the list stops the command before anything is installed.
 
 ### Choose the agent
 
-Skills install for Cursor by default. Set `SKILLS_AGENTS` to another agent, or `*` for every agent the Skills CLI supports.
+Skills install for Cursor by default. Pass `--agent`, or set `SKILLS_AGENTS`. Use `*` for every agent the Skills CLI supports.
 
 ```bash
-SKILLS_AGENTS='*' ./install-ai-skills.sh find-skills
-SKILLS_AGENTS=claude-code ./install-ai-skills.sh 24
+npx add-ai-skills --agent claude-code 24
+npx add-ai-skills --agent '*' find-skills
+SKILLS_AGENTS=claude-code npx add-ai-skills 24
 ```
+
+When you pass an agent this way, the picker skips the agent question and goes straight to the skill list.
 
 ### What gets installed
 
@@ -86,11 +99,11 @@ Each selected skill is installed with:
 npx --yes skills add <repo> --skill <name> --agent cursor --full-depth -y
 ```
 
-For Cursor, files land in `.agents/skills/` inside the project you ran the script from. The script prints a count of installs that succeeded and installs that failed. A failed skill does not roll back the ones that already succeeded.
+For Cursor, files land in `.agents/skills/` inside the project you ran the command from. The CLI prints how many installs succeeded and how many failed. A failed skill does not roll back the ones that already succeeded.
 
 ### Update later
 
-This script only adds skills. To refresh ones already in the project:
+This installer only adds skills. To refresh ones already in the project:
 
 ```bash
 npx skills update
@@ -100,7 +113,7 @@ Browse the wider catalog at [skills.sh](https://skills.sh/), or install [find-sk
 
 ## Skill catalog
 
-Fifty-five skills. The number is the menu index used by `./install-ai-skills.sh <number>`.
+Fifty-five skills. The number is the menu index used by `npx add-ai-skills <number>`.
 
 ### Discover
 
