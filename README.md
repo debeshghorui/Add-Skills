@@ -100,7 +100,7 @@ Browse the wider catalog at [skills.sh](https://skills.sh/), or install [find-sk
 
 ## Skill catalog
 
-Fifty-one skills. The number is the menu index used by `./install-ai-skills.sh <number>`.
+Fifty-four skills. The number is the menu index used by `./install-ai-skills.sh <number>`.
 
 ### Discover
 
@@ -145,43 +145,46 @@ Fifty-one skills. The number is the menu index used by `./install-ai-skills.sh <
 | # | Skill | Description | Source |
 | --- | --- | --- | --- |
 | 24 | [frontend-design](https://skills.sh/anthropics/skills/frontend-design) | Distinctive UI design instead of generic templates | Anthropic |
-| 25 | [frontend-ui-engineering](https://skills.sh/addyosmani/agent-skills/frontend-ui-engineering) | Accessible, production-quality interface code | Addy Osmani |
-| 26 | [web-design-guidelines](https://skills.sh/vercel-labs/agent-skills/web-design-guidelines) | Audit UI for accessibility, UX, and performance | Vercel |
-| 27 | [vercel-react-best-practices](https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices) | React and Next.js performance practices | Vercel |
-| 28 | [vercel-composition-patterns](https://skills.sh/vercel-labs/agent-skills/vercel-composition-patterns) | React composition that stays flexible | Vercel |
-| 29 | [vercel-react-native-skills](https://skills.sh/vercel-labs/agent-skills/vercel-react-native-skills) | React Native practices from Vercel | Vercel |
-| 30 | [react-native-best-practices](https://skills.sh/callstackincubator/agent-skills/react-native-best-practices) | React Native performance from Callstack | Callstack |
-| 31 | [agent-browser](https://skills.sh/vercel-labs/agent-browser/agent-browser) | Drive a browser: click, fill, screenshot, test | Vercel |
-| 32 | [webapp-testing](https://skills.sh/anthropics/skills/webapp-testing) | Test a local web app with Playwright | Anthropic |
-| 33 | [web-perf](https://skills.sh/cloudflare/skills/web-perf) | Audit Core Web Vitals and load performance | Cloudflare |
-| 34 | [performance-optimization](https://skills.sh/addyosmani/agent-skills/performance-optimization) | Speed up UI, queries, and backend paths | Addy Osmani |
-| 35 | [expo-router](https://skills.sh/expo/skills/expo-router) | Navigation and routes in an Expo app | Expo |
-| 36 | [expo-native-ui](https://skills.sh/expo/skills/expo-native-ui) | Native UI in Expo | Expo |
-| 37 | [expo-data-fetching](https://skills.sh/expo/skills/expo-data-fetching) | Network, cache, and offline data in Expo | Expo |
+| 25 | [hallmark](https://github.com/nutlope/hallmark) | Build UI that refuses to look AI-generated | Hallmark |
+| 26 | [impeccable](https://github.com/pbakaus/impeccable) | Design, critique, and polish a frontend | Impeccable |
+| 27 | [design-taste-frontend](https://github.com/leonxlnx/taste-skill) | Landing pages that do not look templated | Taste |
+| 28 | [frontend-ui-engineering](https://skills.sh/addyosmani/agent-skills/frontend-ui-engineering) | Accessible, production-quality interface code | Addy Osmani |
+| 29 | [web-design-guidelines](https://skills.sh/vercel-labs/agent-skills/web-design-guidelines) | Audit UI for accessibility, UX, and performance | Vercel |
+| 30 | [vercel-react-best-practices](https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices) | React and Next.js performance practices | Vercel |
+| 31 | [vercel-composition-patterns](https://skills.sh/vercel-labs/agent-skills/vercel-composition-patterns) | React composition that stays flexible | Vercel |
+| 32 | [vercel-react-native-skills](https://skills.sh/vercel-labs/agent-skills/vercel-react-native-skills) | React Native practices from Vercel | Vercel |
+| 33 | [react-native-best-practices](https://skills.sh/callstackincubator/agent-skills/react-native-best-practices) | React Native performance from Callstack | Callstack |
+| 34 | [agent-browser](https://skills.sh/vercel-labs/agent-browser/agent-browser) | Drive a browser: click, fill, screenshot, test | Vercel |
+| 35 | [webapp-testing](https://skills.sh/anthropics/skills/webapp-testing) | Test a local web app with Playwright | Anthropic |
+| 36 | [web-perf](https://skills.sh/cloudflare/skills/web-perf) | Audit Core Web Vitals and load performance | Cloudflare |
+| 37 | [performance-optimization](https://skills.sh/addyosmani/agent-skills/performance-optimization) | Speed up UI, queries, and backend paths | Addy Osmani |
+| 38 | [expo-router](https://skills.sh/expo/skills/expo-router) | Navigation and routes in an Expo app | Expo |
+| 39 | [expo-native-ui](https://skills.sh/expo/skills/expo-native-ui) | Native UI in Expo | Expo |
+| 40 | [expo-data-fetching](https://skills.sh/expo/skills/expo-data-fetching) | Network, cache, and offline data in Expo | Expo |
 
 ### Documents
 
 | # | Skill | Description | Source |
 | --- | --- | --- | --- |
-| 38 | [pdf](https://skills.sh/anthropics/skills/pdf) | Read, merge, fill, and create PDFs | Anthropic |
-| 39 | [docx](https://skills.sh/anthropics/skills/docx) | Create and edit Word documents | Anthropic |
-| 40 | [pptx](https://skills.sh/anthropics/skills/pptx) | Create and edit PowerPoint decks | Anthropic |
-| 41 | [xlsx](https://skills.sh/anthropics/skills/xlsx) | Create and edit Excel spreadsheets | Anthropic |
+| 41 | [pdf](https://skills.sh/anthropics/skills/pdf) | Read, merge, fill, and create PDFs | Anthropic |
+| 42 | [docx](https://skills.sh/anthropics/skills/docx) | Create and edit Word documents | Anthropic |
+| 43 | [pptx](https://skills.sh/anthropics/skills/pptx) | Create and edit PowerPoint decks | Anthropic |
+| 44 | [xlsx](https://skills.sh/anthropics/skills/xlsx) | Create and edit Excel spreadsheets | Anthropic |
 
 ### Platforms
 
 | # | Skill | Description | Source |
 | --- | --- | --- | --- |
-| 42 | [supabase](https://skills.sh/supabase/agent-skills/supabase) | Auth, database, storage, and the Supabase CLI | Supabase |
-| 43 | [supabase-postgres-best-practices](https://skills.sh/supabase/agent-skills/supabase-postgres-best-practices) | Postgres schema, SQL, RLS, and query performance | Supabase |
-| 44 | [workers-best-practices](https://skills.sh/cloudflare/skills/workers-best-practices) | Production patterns for Cloudflare Workers | Cloudflare |
-| 45 | [wrangler](https://skills.sh/cloudflare/skills/wrangler) | Develop and deploy Workers with Wrangler | Cloudflare |
-| 46 | [deploy-to-vercel](https://skills.sh/vercel-labs/agent-skills/deploy-to-vercel) | Deploy an app and return the live link | Vercel |
-| 47 | [vercel-optimize](https://skills.sh/vercel-labs/agent-skills/vercel-optimize) | Cut Vercel cost and slow routes | Vercel |
-| 48 | [mcp-builder](https://skills.sh/anthropics/skills/mcp-builder) | Build an MCP server for an external API | Anthropic |
-| 49 | [gemini-api-dev](https://skills.sh/google-gemini/gemini-skills/gemini-api-dev) | Call the Gemini API from Python or TypeScript | Google |
-| 50 | [sentry-fix-issues](https://skills.sh/getsentry/agent-skills/sentry-fix-issues) | Fix a production issue from a Sentry trace | Sentry |
-| 51 | [remotion-best-practices](https://skills.sh/remotion-dev/skills/remotion-best-practices) | Make videos in React with Remotion | Remotion |
+| 45 | [supabase](https://skills.sh/supabase/agent-skills/supabase) | Auth, database, storage, and the Supabase CLI | Supabase |
+| 46 | [supabase-postgres-best-practices](https://skills.sh/supabase/agent-skills/supabase-postgres-best-practices) | Postgres schema, SQL, RLS, and query performance | Supabase |
+| 47 | [workers-best-practices](https://skills.sh/cloudflare/skills/workers-best-practices) | Production patterns for Cloudflare Workers | Cloudflare |
+| 48 | [wrangler](https://skills.sh/cloudflare/skills/wrangler) | Develop and deploy Workers with Wrangler | Cloudflare |
+| 49 | [deploy-to-vercel](https://skills.sh/vercel-labs/agent-skills/deploy-to-vercel) | Deploy an app and return the live link | Vercel |
+| 50 | [vercel-optimize](https://skills.sh/vercel-labs/agent-skills/vercel-optimize) | Cut Vercel cost and slow routes | Vercel |
+| 51 | [mcp-builder](https://skills.sh/anthropics/skills/mcp-builder) | Build an MCP server for an external API | Anthropic |
+| 52 | [gemini-api-dev](https://skills.sh/google-gemini/gemini-skills/gemini-api-dev) | Call the Gemini API from Python or TypeScript | Google |
+| 53 | [sentry-fix-issues](https://skills.sh/getsentry/agent-skills/sentry-fix-issues) | Fix a production issue from a Sentry trace | Sentry |
+| 54 | [remotion-best-practices](https://skills.sh/remotion-dev/skills/remotion-best-practices) | Make videos in React with Remotion | Remotion |
 
 ## Sources
 
@@ -189,6 +192,9 @@ Fifty-one skills. The number is the menu index used by `./install-ai-skills.sh <
 | --- | --- |
 | Vercel | [vercel-labs/skills](https://github.com/vercel-labs/skills), [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills), [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) |
 | Anthropic | [anthropics/skills](https://github.com/anthropics/skills) |
+| Hallmark | [nutlope/hallmark](https://github.com/nutlope/hallmark) |
+| Impeccable | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) |
+| Taste | [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill) |
 | Matt Pocock | [mattpocock/skills](https://github.com/mattpocock/skills) |
 | Superpowers | [obra/superpowers](https://github.com/obra/superpowers) |
 | Addy Osmani | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) |

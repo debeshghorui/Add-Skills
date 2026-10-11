@@ -45,6 +45,9 @@ Quality|security-and-hardening|https://github.com/addyosmani/agent-skills|Addy O
 Quality|sharp-edges|https://github.com/trailofbits/skills|Trail of Bits|Spot error-prone APIs and dangerous defaults
 
 Frontend|frontend-design|https://github.com/anthropics/skills|Anthropic|Distinctive UI design instead of generic templates
+Frontend|hallmark|https://github.com/nutlope/hallmark|Hallmark|Build UI that refuses to look AI-generated
+Frontend|impeccable|https://github.com/pbakaus/impeccable|Impeccable|Design, critique, and polish a frontend
+Frontend|design-taste-frontend|https://github.com/leonxlnx/taste-skill|Taste|Landing pages that do not look templated
 Frontend|frontend-ui-engineering|https://github.com/addyosmani/agent-skills|Addy Osmani|Accessible, production-quality interface code
 Frontend|web-design-guidelines|https://github.com/vercel-labs/agent-skills|Vercel|Audit UI for accessibility, UX, and performance
 Frontend|vercel-react-best-practices|https://github.com/vercel-labs/agent-skills|Vercel|React and Next.js performance practices
