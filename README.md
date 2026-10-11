@@ -1,57 +1,137 @@
-# Common AI Skills
+# add-ai-skills
 
-Pick the skills you want and install them into the project you are in. Run `npx add-ai-skills`. It uses the [Skills CLI](https://skills.sh/) (`npx skills`) and writes skills into the current directory for the agents you pick, including editors and CLI agents such as Claude Code, Codex, and Gemini CLI. It does not install them globally.
-
-## Requirements
-
-- [Node.js](https://nodejs.org/) 20.12 or newer, with `npx` on your `PATH`
-- A project directory you want the skills installed into
-
-## User manual
-
-Run it from the project that should receive the skills. The picker shows that directory before you confirm.
-
-### Run with npx
-
-From the project directory:
+Install a curated set of AI agent skills into the project you are in, then restore that same set on any machine with one command.
 
 ```bash
 npx add-ai-skills
 ```
 
-npm downloads the installer, opens the picker, and installs the skills you choose into that directory. It does not add this package to the project.
+Run it from the project directory. It opens a picker, installs the skills you choose for the agents you choose, and records the result in `skills.json`. It uses the [Skills CLI](https://skills.sh/) (`npx skills`) and writes skills into that project. Cursor is the default agent. Claude Code, Codex, Gemini CLI, and other editors and CLI agents are in the same picker.
 
-To install without the picker:
+`skills.json` is the list of skills and agents for this project. `skills-lock.json` is the exact sources and hashes, written by the Skills CLI. Commit both. On a fresh checkout, `npx add-ai-skills i` installs every skill in `skills.json`, the same way `npm i` installs from a lockfile.
 
-```bash
-npx add-ai-skills all
-npx add-ai-skills 1 3 5
-npx add-ai-skills 1-4
-npx add-ai-skills find-skills frontend-design
-```
+Requires [Node.js](https://nodejs.org/) 20.12 or newer, with `npx` on your `PATH`.
 
-Print the numbered catalog, or the help text:
+## Quick start
+
+From the project that should receive the skills:
 
 ```bash
-npx add-ai-skills --list
-npx add-ai-skills --help
+npx add-ai-skills
 ```
 
-### Run a local copy
+The picker shows that directory before you confirm. Choose agents, choose skills, and confirm. Nothing installs until you confirm. npm runs the installer without adding this package as a dependency.
 
-Clone the repo, install its dependencies, then run it from the project that should receive the skills:
+After that, commit `skills.json` and `skills-lock.json`. Anyone who clones the repo restores the skills with:
 
 ```bash
-git clone https://github.com/debeshghorui/Add-Skills.git
-cd Add-Skills
-npm install
-cd /path/to/your-project
-node /path/to/Add-Skills/bin/add-ai-skills.js
+npx add-ai-skills i
 ```
 
-### Interactive terminal
+To skip the picker:
 
-With no skill arguments, the CLI opens the same kind of live terminal the Skills installer uses. You search, move, and select. Nothing installs until you confirm.
+```bash
+npx add-ai-skills add find-skills frontend-design
+npx add-ai-skills add 1 3 5
+npx add-ai-skills add 1-4
+```
+
+Numbers match the [catalog](#skill-catalog). Print it with `npx add-ai-skills --list`.
+
+## Project files
+
+| File | Written by | What it records |
+| --- | --- | --- |
+| `skills.json` | add-ai-skills | Which skills to install, and which agents receive them |
+| `skills-lock.json` | Skills CLI | Exact sources and content hashes |
+
+```json
+{
+  "agents": ["cursor"],
+  "skills": {
+    "find-skills": {
+      "repo": "https://github.com/vercel-labs/skills",
+      "description": "Find and install other agent skills"
+    }
+  }
+}
+```
+
+`i` reads `skills.json` and installs every listed skill for the agents in that file. If `skills.json` is missing, `i` restores what it can from `skills-lock.json`, installs those skills for Cursor, and writes `skills.json`. Pass `--agent` to use a different agent for that run.
+
+```bash
+npx add-ai-skills i --agent claude-code
+```
+
+Each selected skill is installed with:
+
+```bash
+npx --yes skills add <repo> --skill <name> --agent cursor --full-depth -y
+```
+
+For Cursor, files land in `.agents/skills/` inside the project you ran the command from. Each skill that installs is added to `skills.json`. The CLI prints how many installs succeeded and how many failed. Skills that succeeded stay installed and are written to `skills.json`.
+
+## Commands
+
+| Command | Also | What it does |
+| --- | --- | --- |
+| `npx add-ai-skills` | `pick`, `menu` | Open the interactive picker |
+| `npx add-ai-skills init` | | Create an empty `skills.json` |
+| `npx add-ai-skills add` | | Open the picker and add the skills you choose |
+| `npx add-ai-skills add 1 3 find-skills` | | Add skills by catalog number or name |
+| `npx add-ai-skills i` | `install` | Install every skill in `skills.json` |
+| `npx add-ai-skills remove find-skills` | `rm`, `uninstall` | Remove skills from the project and from `skills.json` |
+| `npx add-ai-skills remove --all` | | Remove every skill in `skills.json` |
+| `npx add-ai-skills list` | `ls` | Show the skills and agents in `skills.json` |
+| `npx add-ai-skills update` | `upgrade` | Update installed skills to the latest version |
+| `npx add-ai-skills update find-skills` | | Update one skill |
+| `npx add-ai-skills --list` | `catalog`, `-l` | Print the numbered catalog |
+| `npx add-ai-skills --help` | `-h` | Show help |
+| `npx add-ai-skills --version` | `-v` | Print the version |
+
+`add` with no skill names opens the picker. A number or name with no command adds that skill.
+
+### Add from the command line
+
+```bash
+npx add-ai-skills add all
+npx add-ai-skills add 1 3 5
+npx add-ai-skills add 1-4
+npx add-ai-skills add 2,4
+npx add-ai-skills add find-skills frontend-design
+```
+
+`all` (or `a`) selects every skill. `none` (or `n`) clears the selection so far. An unknown name, a bad range, or a number outside the list stops the command before anything is installed.
+
+### Remove and update
+
+```bash
+npx add-ai-skills remove find-skills pdf
+npx add-ai-skills remove --all
+npx add-ai-skills update
+npx add-ai-skills update find-skills
+```
+
+`remove` deletes the skill files and those entries from `skills.json`. `--all` is only valid with `remove`. If removal fails, `skills.json` is left unchanged.
+
+### Choose the agent
+
+Skills install for Cursor by default. Pass `--agent` (`-a`), or set `SKILLS_AGENTS`. Use `*` for every agent the Skills CLI supports.
+
+```bash
+npx add-ai-skills --agent claude-code 24
+npx add-ai-skills --agent '*' find-skills
+SKILLS_AGENTS=claude-code npx add-ai-skills 24
+```
+
+When you pass an agent this way, the picker skips the agent question and goes straight to the skill list.
+
+## Picker
+
+```bash
+npx add-ai-skills
+npx add-ai-skills pick
+```
 
 There are two screens. The first is agents. Cursor starts selected. Type `cli` to show terminal agents such as Claude Code, Codex, Gemini CLI, and OpenCode, and select as many as you want. The second screen is the skill list. Type `react`, `security`, or a group name to filter it.
 
@@ -65,55 +145,13 @@ There are two screens. The first is agents. Cursor starts selected. Type `cli` t
 
 Choose **Other** on the agent screen to type an agent name that is not in the list. **All agents** passes `*` to the Skills CLI.
 
-### Install from the command line
-
-Arguments select skills and install them immediately. There is no picker.
-
-```bash
-npx add-ai-skills all
-npx add-ai-skills 1 3 5
-npx add-ai-skills 1-4
-npx add-ai-skills 2,4
-npx add-ai-skills find-skills frontend-design
-```
-
-Numbers match the catalog below. `all` selects every skill. `none` clears the selection so far. An unknown name or a number outside the list stops the command before anything is installed.
-
-### Choose the agent
-
-Skills install for Cursor by default. Pass `--agent`, or set `SKILLS_AGENTS`. Use `*` for every agent the Skills CLI supports.
-
-```bash
-npx add-ai-skills --agent claude-code 24
-npx add-ai-skills --agent '*' find-skills
-SKILLS_AGENTS=claude-code npx add-ai-skills 24
-```
-
-When you pass an agent this way, the picker skips the agent question and goes straight to the skill list.
-
-### What gets installed
-
-Each selected skill is installed with:
-
-```bash
-npx --yes skills add <repo> --skill <name> --agent cursor --full-depth -y
-```
-
-For Cursor, files land in `.agents/skills/` inside the project you ran the command from. The CLI prints how many installs succeeded and how many failed. A failed skill does not roll back the ones that already succeeded.
-
-### Update later
-
-This installer only adds skills. To refresh ones already in the project:
-
-```bash
-npx skills update
-```
-
-Browse the wider catalog at [skills.sh](https://skills.sh/), or install [find-skills](https://skills.sh/vercel-labs/skills/find-skills) and ask the agent to look one up.
+Built-in agents: Cursor, Claude Code, Codex, Gemini CLI, OpenCode, GitHub Copilot, Amp, Droid, Grok, Qwen Code, Kiro CLI, Kilo Code, Warp, Goose, Devin, OpenHands, Crush, Continue, Windsurf, Antigravity, Cline, Zed, and Roo Code.
 
 ## Skill catalog
 
 Fifty-five skills. The number is the menu index used by `npx add-ai-skills <number>`.
+
+Browse the wider catalog at [skills.sh](https://skills.sh/), or install [find-skills](https://skills.sh/vercel-labs/skills/find-skills) and ask the agent to look one up.
 
 ### Discover
 
@@ -220,3 +258,15 @@ Fifty-five skills. The number is the menu index used by `npx add-ai-skills <numb
 | Google | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills) |
 | Sentry | [getsentry/agent-skills](https://github.com/getsentry/agent-skills) |
 | Remotion | [remotion-dev/skills](https://github.com/remotion-dev/skills) |
+
+## Develop
+
+Clone the repo, install its dependencies, then run it from the project that should receive the skills:
+
+```bash
+git clone https://github.com/debeshghorui/Add-Skills.git
+cd Add-Skills
+npm install
+cd /path/to/your-project
+node /path/to/Add-Skills/bin/add-ai-skills.js
+```
