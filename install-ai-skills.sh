@@ -43,6 +43,7 @@ Quality|code-review-and-quality|https://github.com/addyosmani/agent-skills|Addy 
 Quality|differential-review|https://github.com/trailofbits/skills|Trail of Bits|Security review of a diff, with blast radius
 Quality|security-and-hardening|https://github.com/addyosmani/agent-skills|Addy Osmani|Harden input, auth, and dependencies
 Quality|sharp-edges|https://github.com/trailofbits/skills|Trail of Bits|Spot error-prone APIs and dangerous defaults
+Quality|security-audit|https://github.com/cloudflare/security-audit-skill|Cloudflare|Multi-phase security audit with verified findings
 
 Frontend|frontend-design|https://github.com/anthropics/skills|Anthropic|Distinctive UI design instead of generic templates
 Frontend|hallmark|https://github.com/nutlope/hallmark|Hallmark|Build UI that refuses to look AI-generated
