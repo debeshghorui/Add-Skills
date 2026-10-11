@@ -14,6 +14,8 @@ Adding a skill writes `skills.json` (the skills and agents for this project) and
 | Command | What it does |
 | --- | --- |
 | `npx add-ai-skills init` | Create `skills.json` |
+| `npx add-ai-skills` | Open the interactive picker |
+| `npx add-ai-skills pick` | Open the same picker |
 | `npx add-ai-skills add` | Open the picker and add the skills you choose |
 | `npx add-ai-skills add 1 3 find-skills` | Add skills by catalog number or name |
 | `npx add-ai-skills i` | Install every skill in `skills.json` |
@@ -23,7 +25,7 @@ Adding a skill writes `skills.json` (the skills and agents for this project) and
 | `npx add-ai-skills update` | Update installed skills to the latest version |
 | `npx add-ai-skills --list` | Print the numbered catalog |
 
-`install` is the long form of `i`. `rm` and `uninstall` are the long forms of `remove`. `ls` lists `skills.json`. `upgrade` updates.
+`install` is the long form of `i`. `rm` and `uninstall` are the long forms of `remove`. `ls` lists `skills.json`. `upgrade` updates. `menu` opens the same picker as `pick`.
 
 `skills.json` records which skills to install and which agents receive them. `skills-lock.json` records the exact sources and hashes.
 
@@ -95,7 +97,14 @@ node /path/to/Add-Skills/bin/add-ai-skills.js
 
 ### Interactive terminal
 
-With no skill arguments, the CLI opens the same kind of live terminal the Skills installer uses. You search, move, and select. Nothing installs until you confirm.
+```bash
+npx add-ai-skills
+npx add-ai-skills pick
+```
+
+`add` with no skill names opens the same picker. Nothing installs until you confirm.
+
+With no skill arguments, the CLI opens the same kind of live terminal the Skills installer uses. You search, move, and select.
 
 There are two screens. The first is agents. Cursor starts selected. Type `cli` to show terminal agents such as Claude Code, Codex, Gemini CLI, and OpenCode, and select as many as you want. The second screen is the skill list. Type `react`, `security`, or a group name to filter it.
 
@@ -111,7 +120,7 @@ Choose **Other** on the agent screen to type an agent name that is not in the li
 
 ### Install from the command line
 
-`add` selects skills and installs them immediately. There is no picker. A number or name with no command does the same thing.
+`add` with numbers or names installs those skills immediately. A number or name with no command does the same thing.
 
 ```bash
 npx add-ai-skills add all

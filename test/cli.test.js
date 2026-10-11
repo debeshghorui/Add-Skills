@@ -59,6 +59,9 @@ test("parses package commands", () => {
   assert.equal(parseArgs(["install"]).command, "install");
   assert.deepEqual(parseArgs(["add", "1", "find-skills"]).tokens, ["1", "find-skills"]);
   assert.equal(parseArgs(["add", "1", "find-skills"]).command, "add");
+  assert.equal(parseArgs(["pick"]).command, "pick");
+  assert.equal(parseArgs(["menu"]).command, "pick");
+  assert.throws(() => parseArgs(["pick", "find-skills"]), /pick does not take skill names/);
   assert.equal(parseArgs(["--agent", "cursor", "add", "find-skills"]).agent, "cursor");
   assert.equal(parseArgs(["rm", "tdd"]).command, "remove");
   assert.deepEqual(parseArgs(["remove", "tdd", "pdf"]).tokens, ["tdd", "pdf"]);
