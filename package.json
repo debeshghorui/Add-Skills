@@ -1,6 +1,6 @@
 {
   "name": "add-ai-skills",
-  "version": "1.1.2",
+  "version": "1.2.2",
   "description": "Install AI skills into the current project and restore them from skills.json.",
   "type": "module",
   "bin": {
