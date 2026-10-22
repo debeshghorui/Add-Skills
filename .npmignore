@@ -1,6 +1,9 @@
-node_modules/
-test/
+.cursor/
 .git/
+node_modules/
+openspec/
+openspec/config.yaml
+test/
 .tmp-bin/
 .tmp-npx/
 *.tgz
