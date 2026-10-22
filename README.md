@@ -149,9 +149,15 @@ Built-in agents: Cursor, Claude Code, Codex, Gemini CLI, OpenCode, GitHub Copilo
 
 ## Skill catalog
 
-Fifty-five skills. The number is the menu index used by `npx add-ai-skills <number>`.
+Fifty-eight skills. The number is the menu index used by `npx add-ai-skills <number>`.
 
 Browse the wider catalog at [skills.sh](https://skills.sh/), or install [find-skills](https://skills.sh/vercel-labs/skills/find-skills) and ask the agent to look one up.
+
+### Setup
+
+| # | Skill | Description | Source |
+| --- | --- | --- | --- |
+| 56 | openspec-setup | Set up OpenSpec in the project | OpenSpec |
 
 ### Discover
 
@@ -192,10 +198,17 @@ Browse the wider catalog at [skills.sh](https://skills.sh/), or install [find-sk
 | 23 | [sharp-edges](https://skills.sh/trailofbits/skills/sharp-edges) | Spot error-prone APIs and dangerous defaults | Trail of Bits |
 | 24 | [security-audit](https://github.com/cloudflare/security-audit-skill) | Multi-phase security audit with verified findings | Cloudflare |
 
+### MCP
+
+| # | Skill | Description | Source |
+| --- | --- | --- | --- |
+| 57 | shadcn-mcp | Set up shadcn MCP server for the agent | shadcn |
+
 ### Frontend
 
 | # | Skill | Description | Source |
 | --- | --- | --- | --- |
+| 58 | chaiui | ChaiUI design system for shadcn | ChaiUI |
 | 25 | [frontend-design](https://skills.sh/anthropics/skills/frontend-design) | Distinctive UI design instead of generic templates | Anthropic |
 | 26 | [hallmark](https://github.com/nutlope/hallmark) | Build UI that refuses to look AI-generated | Hallmark |
 | 27 | [impeccable](https://github.com/pbakaus/impeccable) | Design, critique, and polish a frontend | Impeccable |
@@ -238,6 +251,7 @@ Browse the wider catalog at [skills.sh](https://skills.sh/), or install [find-sk
 | 54 | [sentry-fix-issues](https://skills.sh/getsentry/agent-skills/sentry-fix-issues) | Fix a production issue from a Sentry trace | Sentry |
 | 55 | [remotion-best-practices](https://skills.sh/remotion-dev/skills/remotion-best-practices) | Make videos in React with Remotion | Remotion |
 
+
 ## Sources
 
 | Source | Repository |
@@ -258,6 +272,9 @@ Browse the wider catalog at [skills.sh](https://skills.sh/), or install [find-sk
 | Google | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills) |
 | Sentry | [getsentry/agent-skills](https://github.com/getsentry/agent-skills) |
 | Remotion | [remotion-dev/skills](https://github.com/remotion-dev/skills) |
+| OpenSpec | [openspec.dev](https://openspec.dev) |
+| shadcn | [ui.shadcn.com](https://ui.shadcn.com) |
+| ChaiUI | [ui.chaicode.com](https://ui.chaicode.com) |
 
 ## Develop
 
