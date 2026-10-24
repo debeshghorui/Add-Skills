@@ -1,2 +1,6 @@
 node_modules/
 *.tgz
+
+# Keep project-only OpenSpec helper skills out of the published skills collection.
+.agents/skills/openspec*/
+.agents/skills/.openspec-target
