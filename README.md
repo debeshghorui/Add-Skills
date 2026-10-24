@@ -1,5 +1,7 @@
 # add-ai-skills
 
+[![skills.sh](https://skills.sh/b/debeshghorui/Add-Skills)](https://skills.sh/debeshghorui/Add-Skills)
+
 Install a curated set of AI agent skills into the project you are in, then restore that same set on any machine with one command.
 
 ```bash
@@ -7,6 +9,16 @@ npx add-ai-skills
 ```
 
 Run it from the project directory. It opens a picker, installs the skills you choose for the agents you choose, and records the result in `skills.json`. It uses the [Skills CLI](https://skills.sh/) (`npx skills`) and writes skills into that project. Cursor is the default agent. Claude Code, Codex, Gemini CLI, and other editors and CLI agents are in the same picker.
+
+## Install the agent skill
+
+This repository also includes the `add-ai-skills` agent skill. Install it into your agent with:
+
+```bash
+npx skills add debeshghorui/Add-Skills --skill add-ai-skills
+```
+
+The skill helps agents use the Add-Skills CLI to choose, restore, and manage project skills. skills.sh discovers and ranks skills through anonymous install counts; there is no separate submission step. See the [skills.sh documentation](https://www.skills.sh/docs) for details.
 
 `skills.json` is the list of skills and agents for this project. `skills-lock.json` is the exact sources and hashes, written by the Skills CLI. Commit both. On a fresh checkout, `npx add-ai-skills i` installs every skill in `skills.json`, the same way `npm i` installs from a lockfile.
 
